@@ -113,37 +113,37 @@
             </p>
           </div>
         </div>
-        {% for category in wines %}
-        <div class="row">
-          <div class="col-12 section-title text-center mb-5">
-            <h2 class="d-block">{{category}}</h2>
-          </div>
-        </div>
-        <div class="row">
-          {% for wine in wines[category] %}
-          <div class="col-lg-4 mb-5 col-md-6">
-            <div class="wine_v_1 text-center pb-4 pt-5">
-              {% if wine.image %}
-                <img src={{root_path_img}}{{wine.image}} alt="Image" class="img-fluid">
-                {% if wine.promotion %}
-                  <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
-                {% endif %}
-              {% else %}
-                <img src="https://dvmn.org/filer/canonical/1569944855/354/" class="img-fluid" alt="No Image">
-              {% endif %}
-              <div>
-                <h3 class="heading mt-3 mb-3 text-dark">{{wine.title}}</h3>
-                <p>
-                  {% if wine.sort %}
-                    Сорт винограда - {{wine.sort}}<br/>
-                  {% endif %}
-                  <span class="price">{{wine.price}} p.</span>
-                </p>
-              </div>
+        {% for category, wines in wines.items() %}
+          <div class="row">
+            <div class="col-12 section-title text-center mb-5">
+              <h2 class="d-block">{{category}}</h2>
             </div>
           </div>
-          {% endfor %}
-        </div>
+          <div class="row">
+            {% for wine in wines %}
+              <div class="col-lg-4 mb-5 col-md-6">
+                <div class="wine_v_1 text-center pb-4 pt-5">
+                  {% if wine.image %}
+                    <img src={{root_path_img}}{{wine.image}} alt="Image" class="img-fluid">
+                  {% else %}
+                    <img src="https://dvmn.org/filer/canonical/1569944855/354/" class="img-fluid" alt="No Image">
+                  {% endif %}
+                  {% if wine.promotion %}
+                    <img src="assets/profitable.png" style="width:10rem;height: 10rem;position:absolute;right: -20px;top: -20px;">
+                  {% endif %}
+                  <div>
+                    <h3 class="heading mt-3 mb-3 text-dark">{{wine.title}}</h3>
+                    <p>
+                      {% if wine.sort %}
+                        Сорт винограда - {{wine.sort}}<br/>
+                      {% endif %}
+                      <span class="price">{{wine.price}} p.</span>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
         {% endfor %}
       </div>
     </div>
