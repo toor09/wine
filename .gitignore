@@ -7,3 +7,8 @@ venv/
 .replit
 index.html
 *.xslx
+*.pyc
+*.pyd
+*.pyo
+.DS_Store
+Thumbs.db
