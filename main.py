@@ -7,11 +7,11 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 from filters import format_year
 from load_data import extract_xlsx_data
+from settings import Settings
 
-FOUNDATION_YEAR = 1920
 
-
-def render_page(wines: defaultdict) -> None:
+def render_page(categorized_wines: defaultdict, settings: Settings) -> None:
+    """Render page with template variables."""
 
     env = Environment(
         loader=FileSystemLoader("."),
@@ -22,19 +22,19 @@ def render_page(wines: defaultdict) -> None:
     template = env.get_template("template.html")
 
     rendered_page = template.render(
-        age=dt.now().year - FOUNDATION_YEAR,
-        root_path_img="images/",
-        wines=wines
+        age=dt.now().year - settings.FOUNDATION_YEAR,
+        root_path_img=settings.ROOT_PATH_IMG,
+        categorized_wines=categorized_wines
     )
 
     with open("index.html", "w", encoding="utf8") as file:
         file.write(rendered_page)
 
 
-def run_server() -> None:
-    """Run HTTP server"""
+def run_server(port: int) -> None:
+    """Run HTTP server."""
 
-    server = HTTPServer(("0.0.0.0", 8000), SimpleHTTPRequestHandler)
+    server = HTTPServer(("0.0.0.0", port), SimpleHTTPRequestHandler)
     server.serve_forever()
 
 
@@ -49,10 +49,12 @@ def main(file_path: str) -> None:
     Load data from local excel file and render page.
     After that just run HTTP server.
     """
-
-    wines = extract_xlsx_data(file_path=file_path)
-    render_page(wines=wines)
-    run_server()
+    settings = Settings()
+    categorized_wines = extract_xlsx_data(
+        file_path=file_path, settings=settings
+    )
+    render_page(categorized_wines=categorized_wines, settings=settings)
+    run_server(settings.PORT)
 
 
 if __name__ == "__main__":

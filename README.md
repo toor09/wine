@@ -16,7 +16,12 @@
 ## Запуск
 
 - Скачайте код.
-- Установите актуальную версию poetry.
+- Cоздайте файл `.env` в директории проекта, на основе файла `.env.example` командой 
+(при необходимости скорректируйте значения переменных окружения):
+```
+cp .env.example .env
+```
+- Установите актуальную версию poetry:
 ```
 curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 ```
