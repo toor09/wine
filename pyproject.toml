@@ -1,0 +1,22 @@
+[tool.poetry]
+name = "wine"
+version = "0.1.0"
+description = "Сайт магазина авторского вина \"Новое русское вино\"."
+authors = ["Danil Nikitin <d.nikitin.dev@gmail.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pandas = "1.4.2"
+click = "8.1.3"
+Jinja2 = "3.1.2"
+openpyxl = "3.0.10"
+
+[tool.poetry.dev-dependencies]
+flake8 = "^4.0.1"
+mypy = "^0.960"
+isort = "^5.10.1"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

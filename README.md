@@ -15,12 +15,28 @@
 В качестве примера приведен файл `wines.xslx`.
 ## Запуск
 
-- Скачайте код
-- Установите все зависимости
+- Скачайте код.
+- Установите актуальную версию poetry.
 ```
-pip3 install -r requirements.txt
+curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python3 -
 ```
-- Запустите сайт командой
+- Добавьте к переменной окружения `$PATH` команду poetry:
+```
+source $HOME/.poetry/bin
+```
+- Установите виртуальное окружение в директории с проектом командой:
+```
+poetry config virtualenvs.in-project true
+```
+- Установите все зависимости (для установки без dev зависимостей можно добавить аргумент `--no-dev`):
+```
+poetry install
+```
+- Активируйте виртуальное окружение командой: 
+```
+source .venv/bin/activate
+```
+- Запустите сайт командой:
 ```
 python3 main.py
 ```
@@ -29,7 +45,7 @@ python3 main.py
 ```
 python3 main.py -f /home/user/file.xslx
 ```
-- Для запуска линтеров используем команду
+- Для запуска линтеров используем команду:
 ```
 flake8 . && mypy . && isort .
 ```

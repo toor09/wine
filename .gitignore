@@ -4,6 +4,7 @@ __pycache__
 .idea/
 env/
 venv/
+.venv/
 .replit
 index.html
 *.xslx
